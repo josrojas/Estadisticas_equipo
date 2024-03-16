@@ -83,6 +83,24 @@ def show_stats(player_name):
             return
     print(f"No stats found for {player_name}.")
 
+# Function to show all players stats in a table
+def show_all_stats():
+    if team:
+        print("Players stats:")
+        players = []
+        stats = []
+        for player in team:
+            players.append(player["player"])
+            stats.append([player["Pos"], player["Appearances"], player["Goals"], player["Assists"],
+                                 player["CleanSheets"], player["RedCards"], player["Mvp"]])
+
+        # Use tabulate to show all data in a table
+        print(tabulate(stats, headers=["Pos", "Appearances", "Goals", "Assists", "CleanSheets", "RedCards", "Mvp"],
+                       showindex=players, tablefmt="grid"))
+    else:
+        print("No stats found.")
+
+# Function main menu
 def main_menu():
     print("==============================================")
     print("Football team stats")
@@ -97,7 +115,6 @@ def main_menu():
     option = input("Choose an option: ")
     return option
 
-# Main menu
 while True:
     option = main_menu()
 
@@ -107,14 +124,14 @@ while True:
         player = input("Enter player name: ")
         show_stats(player)
     elif option == "3":
-        show_stats_todos()
+        show_all_stats()
     elif option == "4":
         player = input("Enter player name you want to update: ")
-        actualizar_estadisticas(player)
+        update_stats(player)
         save_data(team)
     elif option == "5":
         player = input("Enter player name you want to delete: ")
-        eliminar_player(player, team)
+        eliminate_player(player, team)
         save_data(team)
     elif option == "6":
         print("¡Thanks for using the app!")
