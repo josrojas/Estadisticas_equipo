@@ -100,6 +100,22 @@ def show_all_stats():
     else:
         print("No stats found.")
 
+# Function to update a player stats
+def update_stats(player_name):
+    player_found = False
+    for player in team:
+        if player['player'] == player_name:
+            player_found = True
+            print(f"Updating stats for {player_name}:")
+            for key in player.keys():
+                if key != 'player' and key != 'Pos':  # don't change name and pos
+                    new_value = input(f"Enter new value for {key} (current: {player[key]}): ")
+                    player[key] = int(new_value)
+            print(f"Stats for {player_name} updated.")
+            break  
+    if not player_found:
+        print(f"No status found for {player_name}.")
+
 # Function main menu
 def main_menu():
     print("==============================================")
