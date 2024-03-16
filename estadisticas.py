@@ -73,6 +73,16 @@ def agregar_jugador():
         else:
             print("Opción no válida. Por favor, intente de nuevo.")
 
+# Función para mostrar las estadísticas de un jugador
+def mostrar_estadisticas(nombre_jugador):
+    for jugador in equipo:
+        if jugador["Jugador"] == nombre_jugador:
+            print(f"Estadísticas de {nombre_jugador}:")
+            for key, value in jugador.items():
+                print(f"{key}: {value}")
+            return
+    print(f"No se encontraron estadísticas para el jugador {nombre_jugador}.")
+
 def menu_principal():
     print("==============================================")
     print("Sistema de estadísticas de equipo de fútbol")
