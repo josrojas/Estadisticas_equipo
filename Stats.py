@@ -116,6 +116,18 @@ def update_stats(player_name):
     if not player_found:
         print(f"No status found for {player_name}.")
 
+# Function for delete a player
+def delete_player(player_name, team):
+    player_found = False
+    for player in team:
+        if player['player'] == player_name:
+            team.remove(player)
+            print(f"player {player_name} deleted.")
+            player_found = True
+            break  
+    if not player_found:
+        print(f"No player name found {player_name}.")
+
 # Function main menu
 def main_menu():
     print("==============================================")
@@ -147,7 +159,7 @@ while True:
         save_data(team)
     elif option == "5":
         player = input("Enter player name you want to delete: ")
-        eliminate_player(player, team)
+        delete_player(player, team)
         save_data(team)
     elif option == "6":
         print("¡Thanks for using the app!")
